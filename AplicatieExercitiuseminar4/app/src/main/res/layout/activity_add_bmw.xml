@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".AddBmwActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 1. TextView (Titlu) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adaugare Obiect BMW"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 2. EditText pentru Nume -->
+        <EditText
+            android:id="@+id/etNume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nume model (ex: M3, X5)"
+            android:inputType="text"/>
+
+        <!-- 2. EditText pentru Kg -->
+        <EditText
+            android:id="@+id/etKg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Greutate (kg)"
+            android:inputType="number"
+            android:layout_marginTop="8dp"/>
+
+        <!-- 2. EditText pentru An -->
+        <EditText
+            android:id="@+id/etAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="An fabricație"
+            android:inputType="number"
+            android:layout_marginTop="8dp"/>
+
+        <!-- 3. Switch (eSport) -->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchSport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pachet M Sport"
+            android:layout_marginTop="12dp"/>
+
+        <!-- 4. RadioGroup + RadioButton (Combustibil) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Combustibil:"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgCombustibil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbBenzina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Benzina"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rbDiesel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diesel"/>
+
+            <RadioButton
+                android:id="@+id/rbElectric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Electric"/>
+        </RadioGroup>
+
+        <!-- 5. CheckBox -->
+        <CheckBox
+            android:id="@+id/cbGarantie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Garantie extinsa"
+            android:layout_marginTop="8dp"/>
+
+        <!-- 6. Spinner-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Culoare:"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spCuloare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"/>
+
+        <!-- 7. RatingBar -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stare masina:"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <RatingBar
+            android:id="@+id/rbStare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="5"/>
+
+        <!-- 8. Button (save) -->
+        <Button
+            android:id="@+id/btnSalveaza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salveaza BMW"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

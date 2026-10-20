@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AplicatieExercitiuseminar4</string>
+    <string name="titlu_adaugare">Adăugare Obiect BMW</string>
+    <string name="hint_nume">Nume model (ex: M3, X5)</string>
+    <string name="hint_kg">Greutate (kg)</string>
+    <string name="hint_an">An fabricație</string>
+    <string name="switch_sport">Pachet M Sport</string>
+    <string name="lbl_combustibil">Combustibil:</string>
+    <string name="rb_benzina">Benzină</string>
+    <string name="rb_diesel">Diesel</string>
+    <string name="rb_electric">Electric</string>
+    <string name="cb_garantie">Garanție extinsă</string>
+    <string name="lbl_culoare">Culoare:</string>
+    <string name="lbl_stare">Stare mașină:</string>
+    <string name="btn_salveaza">Salvează BMW</string>
+    <string name="btn_adauga">Adaugă BMW</string>
+    <string name="text_initial">Apasă pe buton.</string>
+</resources>
