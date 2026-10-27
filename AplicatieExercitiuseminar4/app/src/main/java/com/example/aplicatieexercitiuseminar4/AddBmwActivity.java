@@ -29,8 +29,6 @@ public class AddBmwActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bmw);
-
-        // 1. Inițializare view-uri din XML
         etNume = findViewById(R.id.etNume);
         etKg = findViewById(R.id.etKg);
         etAn = findViewById(R.id.etAn);
@@ -41,18 +39,18 @@ public class AddBmwActivity extends AppCompatActivity {
         rbStare = findViewById(R.id.rbStare);
         btnSalveaza = findViewById(R.id.btnSalveaza);
 
-        // 2. Populare Spinner cu opțiuni
+
         String[] culori = {"Negru", "Alb", "Albastru", "Gri"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, culori);
         spCuloare.setAdapter(adapter);
 
-        // 3. Listener pe butonul Salvează
+
         btnSalveaza.setOnClickListener(v -> {
             String nume = etNume.getText().toString().trim();
             String kgStr = etKg.getText().toString().trim();
             String anStr = etAn.getText().toString().trim();
 
-            // Validare câmpuri obligatorii
+
             if (nume.isEmpty() || kgStr.isEmpty() || anStr.isEmpty()) {
                 Toast.makeText(this, "Completați toate câmpurile text!", Toast.LENGTH_SHORT).show();
                 return;
@@ -62,22 +60,22 @@ public class AddBmwActivity extends AppCompatActivity {
             int an = Integer.parseInt(anStr);
             boolean esteSport = switchSport.isChecked();
 
-            // Preluare text din RadioButton-ul selectat
+
             int selectedRadioId = rgCombustibil.getCheckedRadioButtonId();
             RadioButton rbSelected = findViewById(selectedRadioId);
             String combustibil = (rbSelected != null) ? rbSelected.getText().toString() : "Benzina";
 
-            // Creare instanță BMW cu cele 5 atribute
+
             BMW bmwNou = new BMW(nume, kg, an, esteSport, combustibil);
 
-            // Trimitere obiect înapoi către MainActivity prin Intent și Bundle (Cerința 4)
+
             Intent resultIntent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putSerializable("BMW_OBJECT", bmwNou);
             resultIntent.putExtras(bundle);
 
             setResult(RESULT_OK, resultIntent);
-            finish(); // Închide activitatea și revine în MainActivity
+            finish();
         });
     }
 }

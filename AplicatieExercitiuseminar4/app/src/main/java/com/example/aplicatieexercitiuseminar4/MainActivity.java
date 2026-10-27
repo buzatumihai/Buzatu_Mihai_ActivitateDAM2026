@@ -14,12 +14,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvRezultat;
     private Button btnAdaugaBmw;
+    private Button btnAfiseazaLista;
 
-    // Launcher pentru primirea obiectului BMW returnat din AddBmwActivity (Punctul 4)
+    private ArrayList<BMW> listaBmw = new ArrayList<>();
+
     private final ActivityResultLauncher<Intent> addBmwLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -28,14 +32,30 @@ public class MainActivity extends AppCompatActivity {
                     if (bundle != null) {
                         BMW bmwPrimit = (BMW) bundle.getSerializable("BMW_OBJECT");
                         if (bmwPrimit != null) {
-                            // 1. Afișare în TextView
+                            // Adăugare obiect în listă (Cerința 1)
+                            listaBmw.add(bmwPrimit);
+
+                            // Afișare în TextView
                             tvRezultat.setText(bmwPrimit.toString());
 
-                            // 2. Afișare prin Toast
+                            // Afișare prin Toast
                             Toast.makeText(MainActivity.this,
-                                    "Obiect creat cu succes!\n" + bmwPrimit.getNume(),
+                                    "Obiect adăugat în listă!\nTotal obiecte: " + listaBmw.size(),
                                     Toast.LENGTH_LONG).show();
                         }
+                    }
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<Intent> listBmwLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    //noinspection unchecked
+                    ArrayList<BMW> updatedList = (ArrayList<BMW>) result.getData().getSerializableExtra("LISTA_BMW");
+                    if (updatedList != null) {
+                        listaBmw = updatedList;
                     }
                 }
             }
@@ -52,15 +72,25 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        // Conectare elemente din XML
         tvRezultat = findViewById(R.id.tvRezultat);
         btnAdaugaBmw = findViewById(R.id.btnAdaugaBmw);
+        btnAfiseazaLista = findViewById(R.id.btnAfiseazaLista);
 
-        // Deschidere activitate de adăugare la click pe buton
+
         btnAdaugaBmw.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddBmwActivity.class);
             addBmwLauncher.launch(intent);
+        });
+
+        btnAfiseazaLista.setOnClickListener(v -> {
+            if (listaBmw.isEmpty()) {
+                Toast.makeText(MainActivity.this,
+                        "Lista este goală! Adăugați mai întâi un obiect BMW.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            Intent intent = new Intent(MainActivity.this, ListBmwActivity.class);
+            intent.putExtra("LISTA_BMW", listaBmw);
+            listBmwLauncher.launch(intent);
         });
     }
 }

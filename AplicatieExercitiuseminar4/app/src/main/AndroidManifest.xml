@@ -22,8 +22,8 @@
             </intent-filter>
         </activity>
 
-        <!-- AICI trebuia adăugată noua activitate: -->
         <activity android:name=".AddBmwActivity" />
+        <activity android:name=".ListBmwActivity" />
 
     </application>
 

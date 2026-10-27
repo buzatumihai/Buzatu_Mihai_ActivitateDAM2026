@@ -36,13 +36,10 @@ public class BMW implements Serializable {
     public String getCombustibil() { return combustibil; }
     public void setCombustibil(String combustibil) { this.combustibil = combustibil; }
 
+    @NonNull
     @Override
     public String toString() {
-        return "BMW adaugat:\n" +
-                "Nume: " + nume +
-                "\n" + "Kg: " + kg +
-                "\n" + "An: " + an +
-                "\n" + "Este Sport: " + esteSport +
-                "\n" + "Combustibil: " + combustibil;
+        return "BMW " + nume + " | " + kg + " kg | An: " + an +
+                " | " + (esteSport ? "Pachet M" : "Standard") + " | " + combustibil;
     }
 }

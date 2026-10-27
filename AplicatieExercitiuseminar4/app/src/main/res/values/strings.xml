@@ -14,5 +14,8 @@
     <string name="lbl_stare">Stare mașină:</string>
     <string name="btn_salveaza">Salvează BMW</string>
     <string name="btn_adauga">Adaugă BMW</string>
+    <string name="btn_afiseaza_lista">Afișează Lista BMW</string>
+    <string name="titlu_lista_bmw">Lista BMW</string>
+    <string name="msg_lista_goala">Nu există obiecte BMW în listă.\nAdăugați un obiect din ecranul principal!</string>
     <string name="text_initial">Apasă pe buton.</string>
 </resources>

@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- 1. TextView (Titlu) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,33 +19,32 @@
             android:textStyle="bold"
             android:layout_marginBottom="16dp"/>
 
-        <!-- 2. EditText pentru Nume -->
         <EditText
             android:id="@+id/etNume"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nume model (ex: M3, X5)"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:minHeight="48dp" />
 
-        <!-- 2. EditText pentru Kg -->
         <EditText
             android:id="@+id/etKg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="Greutate (kg)"
             android:inputType="number"
-            android:layout_marginTop="8dp"/>
+            android:minHeight="48dp" />
 
-        <!-- 2. EditText pentru An -->
         <EditText
             android:id="@+id/etAn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="An fabricație"
             android:inputType="number"
-            android:layout_marginTop="8dp"/>
+            android:minHeight="48dp" />
 
-        <!-- 3. Switch (eSport) -->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchSport"
             android:layout_width="match_parent"
@@ -54,7 +52,6 @@
             android:text="Pachet M Sport"
             android:layout_marginTop="12dp"/>
 
-        <!-- 4. RadioGroup + RadioButton (Combustibil) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,7 +85,6 @@
                 android:text="Electric"/>
         </RadioGroup>
 
-        <!-- 5. CheckBox -->
         <CheckBox
             android:id="@+id/cbGarantie"
             android:layout_width="wrap_content"
@@ -96,7 +92,6 @@
             android:text="Garantie extinsa"
             android:layout_marginTop="8dp"/>
 
-        <!-- 6. Spinner-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,7 +105,6 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"/>
 
-        <!-- 7. RatingBar -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,7 +119,6 @@
             android:numStars="5"
             android:rating="5"/>
 
-        <!-- 8. Button (save) -->
         <Button
             android:id="@+id/btnSalveaza"
             android:layout_width="match_parent"

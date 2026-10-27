@@ -10,25 +10,35 @@
 
     <Button
         android:id="@+id/btnAdaugaBmw"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Adauga BMW"
+        android:text="@string/btn_adauga"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvRezultat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        android:layout_marginTop="32dp"/>
+
+    <Button
+        android:id="@+id/btnAfiseazaLista"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_afiseaza_lista"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdaugaBmw"/>
 
     <TextView
         android:id="@+id/tvRezultat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Apasa pe buton."
+        android:text="@string/text_initial"
         android:textSize="16sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdaugaBmw" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAfiseazaLista" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
