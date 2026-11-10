@@ -2,12 +2,13 @@ package com.example.aplicatieexercitiuseminar4;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,7 +21,36 @@ public class ListBmwActivity extends AppCompatActivity {
     private ListView lvBmw;
     private TextView tvEmpty;
     private ArrayList<BMW> listaBmw;
-    private ArrayAdapter<BMW> adapter;
+    private BMWAdapter adapter;
+
+    // Indexul elementului selectat pentru modificare
+    private int idModificat = -1;
+
+    // Launcher pentru modificarea unui obiect BMW în AddBmwActivity
+    private final ActivityResultLauncher<Intent> editBmwLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Bundle bundle = result.getData().getExtras();
+                    if (bundle != null && idModificat != -1) {
+                        BMW bmwModificat = (BMW) bundle.getSerializable("BMW_OBJECT");
+                        if (bmwModificat != null && idModificat < listaBmw.size()) {
+                            // 1. Modificăm obiectul în cadrul listei la poziția respectivă
+                            listaBmw.set(idModificat, bmwModificat);
+
+                            // 2. Notificăm adapterul că au fost realizate modificări în sursa de date
+                            adapter.notifyDataSetChanged();
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Obiect modificat cu succes: " + bmwModificat.getNume(),
+                                    Toast.LENGTH_SHORT).show();
+
+                            actualizeazaRezultat();
+                        }
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +70,28 @@ public class ListBmwActivity extends AppCompatActivity {
         lvBmw.setEmptyView(tvEmpty);
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("LISTA_BMW")) {
+            //noinspection unchecked
             listaBmw = (ArrayList<BMW>) intent.getSerializableExtra("LISTA_BMW");
         }
         if (listaBmw == null) {
             listaBmw = new ArrayList<>();
         }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaBmw);
+        // Folosim BMWAdapter custom cu layout_nou.xml
+        adapter = new BMWAdapter(listaBmw, this, R.layout.layout_nou);
         lvBmw.setAdapter(adapter);
 
+        // Click pe un element -> deschidere activitate de modificare/adaugare cu obiectul selectat
         lvBmw.setOnItemClickListener((parent, view, position, id) -> {
             if (position >= 0 && position < listaBmw.size()) {
-                BMW bmwSelectat = listaBmw.get(position);
-                Toast.makeText(getApplicationContext(),
-                        "Ați selectat:\n" + bmwSelectat,
-                        Toast.LENGTH_LONG).show();
+                idModificat = position;
+                Intent intentModifica = new Intent(ListBmwActivity.this, AddBmwActivity.class);
+                intentModifica.putExtra("BMW_OBJECT", listaBmw.get(position));
+                editBmwLauncher.launch(intentModifica);
             }
         });
 
+        // Long Click -> ștergere din lista de obiecte și din ListView
         lvBmw.setOnItemLongClickListener((parent, view, position, id) -> {
             if (position >= 0 && position < listaBmw.size()) {
                 BMW bmwSters = listaBmw.remove(position);
