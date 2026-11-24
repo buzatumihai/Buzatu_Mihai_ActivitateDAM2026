@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvRezultat;
     private Button btnAdaugaBmw;
     private Button btnAfiseazaLista;
+    private Button btnImagini;
 
     private ArrayList<BMW> listaBmw = new ArrayList<>();
 
@@ -32,13 +33,8 @@ public class MainActivity extends AppCompatActivity {
                     if (bundle != null) {
                         BMW bmwPrimit = (BMW) bundle.getSerializable("BMW_OBJECT");
                         if (bmwPrimit != null) {
-                            // Adăugare obiect în listă (Cerința 1)
                             listaBmw.add(bmwPrimit);
-
-                            // Afișare în TextView
                             tvRezultat.setText(bmwPrimit.toString());
-
-                            // Afișare prin Toast
                             Toast.makeText(MainActivity.this,
                                     "Obiect adăugat în listă!\nTotal obiecte: " + listaBmw.size(),
                                     Toast.LENGTH_LONG).show();
@@ -72,10 +68,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         tvRezultat = findViewById(R.id.tvRezultat);
         btnAdaugaBmw = findViewById(R.id.btnAdaugaBmw);
         btnAfiseazaLista = findViewById(R.id.btnAfiseazaLista);
-
+        btnImagini = findViewById(R.id.btnImagini);
 
         btnAdaugaBmw.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddBmwActivity.class);
@@ -91,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ListBmwActivity.class);
             intent.putExtra("LISTA_BMW", listaBmw);
             listBmwLauncher.launch(intent);
+        });
+
+        // Deschidere activitate de afișare imagini
+        btnImagini.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ImaginiActivity.class);
+            startActivity(intent);
         });
     }
 }
